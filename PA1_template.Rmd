@@ -109,6 +109,7 @@ xyplot(new2$steps ~ new2$interval|new2$week,
        xlab = "Interval",
        ylab = "Average Number of Steps", 
        main = "Steps as a function of Time of Day in 5 Min Intervals",
+       layout = c(1,2),
        type = "l")
 ```
 
