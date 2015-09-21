@@ -56,7 +56,7 @@ format(new2$y[which.max(new2$steps)], "%H:%M")
 Missing Values in the dataset are replaced with the interval average across all days. The total number of missing values is:
 
 ```{r}
-format(new2$y[which.max(new2$steps)], "%H:%M")
+sum(is.na(activity))
 ```
 
 A new histogram of the mean total number of steps taken per day with the filled in missing values

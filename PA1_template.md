@@ -81,11 +81,11 @@ Missing Values in the dataset are replaced with the interval average across all 
 
 
 ```r
-format(new2$y[which.max(new2$steps)], "%H:%M")
+sum(is.na(activity))
 ```
 
 ```
-## [1] "08:35"
+## [1] 2304
 ```
 
 A new histogram of the mean total number of steps taken per day with the filled in missing values
