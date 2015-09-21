@@ -14,9 +14,9 @@ activity <- read.csv("activity.csv")
 
 
 ```r
-daySteps <- aggregate(steps ~ date, data=activity, sum)
+daySteps <- tapply(activity$steps, activity$date, sum, na.rm=TRUE)
 
-hist(daySteps$steps, 
+hist(daySteps, 
      breaks=10, 
      col="cornflowerblue", 
      xlab = "No. of Steps per Day", 
@@ -29,19 +29,19 @@ hist(daySteps$steps,
 
 
 ```r
-mean(daySteps$steps)
+mean(daySteps)
 ```
 
 ```
-## [1] 10766.19
+## [1] 9354.23
 ```
 
 ```r
-median(daySteps$steps)
+median(daySteps)
 ```
 
 ```
-## [1] 10765
+## [1] 10395
 ```
 
 ##Calculation of the Average Daily Activity Pattern in Five Minute Intervals
@@ -98,9 +98,9 @@ cleanActivity <- transform(activity,
                            new2$interval)], 
                            activity$steps))
 
-daySteps <- aggregate(steps ~ date, data=cleanActivity, sum)
+daySteps <- tapply(cleanActivity$steps, cleanActivity$date, sum, na.rm=TRUE)
 
-hist(daySteps$steps, 
+hist(daySteps, 
      breaks=10, 
      col="cornflowerblue", 
      xlab = "No. of Steps per Day", 
@@ -113,7 +113,7 @@ The new mean and median are:
 
 
 ```r
-mean(daySteps$steps)
+mean(daySteps)
 ```
 
 ```
@@ -121,14 +121,14 @@ mean(daySteps$steps)
 ```
 
 ```r
-median(daySteps$steps)
+median(daySteps)
 ```
 
 ```
 ## [1] 10766.19
 ```
 
-Replacing the missing values has only a small impact on median and an even smaller one on mean.  
+Replacing the missing values has only a small impact on median but a much greater (increasing) one on mean. For some reason I can't figure, the mean and median are now equal.  
 
 ##Are there Differences Between Activity Patterns on the Weekend Compared to Weekdays
 
