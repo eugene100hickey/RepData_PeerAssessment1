@@ -1,10 +1,11 @@
 activity <- read.csv("activity.csv")
 
-daySteps <- aggregate(steps ~ date, data=activity, sum)
+daySteps <- tapply(activity$steps, activity$date, sum, na.rm=TRUE)
+daySteps <-aggregate(steps ~ date, data=activity, na.action = na.pass, FUN=sum)
+index <- is.na(daySteps$steps)
+daySteps$steps[index] <- 0
 
-
-
-hist(daySteps$steps, 
+hist(daySteps, 
      breaks=10, 
      col="cornflowerblue", 
      xlab = "No. of Steps per Day", 
@@ -38,7 +39,7 @@ cleanActivity <- transform(activity,
                            new2$interval)], 
                            activity$steps))
 
-daySteps <- aggregate(steps ~ date, data=cleanActivity, sum)
+daySteps$steps <- tapply(cleanActivity$steps, cleanActivity$date, sum, na.rm=TRUE)
 
 hist(daySteps$steps, 
      breaks=10, 
@@ -68,4 +69,5 @@ xyplot(new2$steps ~ new2$interval|new2$week,
        xlab = "Interval",
        ylab = "Average Number of Steps", 
        main = "Steps as a function of Time of Day in 5 Min Intervals",
+       layout = c(1,2),
        type = "l")

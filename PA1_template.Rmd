@@ -1,6 +1,6 @@
 ##title: "Reproducible Research - Project 1"  
 author: "Eugene"  
-date: "20 September 2015"  
+date: "9th January 2016"  
 
 
 ##Loading the Data
